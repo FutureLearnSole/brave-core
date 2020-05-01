@@ -12,12 +12,13 @@
 
 #include "base/memory/weak_ptr.h"
 #include "brave/components/brave_rewards/browser/balance.h"
+#include "brave/components/brave_rewards/browser/balance_report.h"
 #include "brave/components/brave_rewards/browser/content_site.h"
 #include "brave/components/brave_rewards/browser/external_wallet.h"
-#include "brave/components/brave_rewards/browser/publisher_banner.h"
-#include "brave/components/brave_rewards/browser/balance_report.h"
-#include "brave/components/brave_rewards/browser/rewards_parameters.h"
 #include "brave/components/brave_rewards/browser/promotion.h"
+#include "brave/components/brave_rewards/browser/publisher_banner.h"
+#include "brave/components/brave_rewards/browser/publisher_info.h"
+#include "brave/components/brave_rewards/browser/rewards_parameters.h"
 #include "extensions/browser/extension_function.h"
 
 namespace extensions {
@@ -44,6 +45,87 @@ class BraveRewardsOpenBrowserActionUIFunction :
 
  protected:
   ~BraveRewardsOpenBrowserActionUIFunction() override;
+
+  ResponseAction Run() override;
+};
+
+class BraveRewardsUpdateMediaDurationFunction : public ExtensionFunction {
+ public:
+  DECLARE_EXTENSION_FUNCTION("braveRewards.updateMediaDuration", UNKNOWN)
+
+ protected:
+  ~BraveRewardsUpdateMediaDurationFunction() override;
+
+  ResponseAction Run() override;
+};
+
+class BraveRewardsGetMediaPublisherInfoFunction : public ExtensionFunction {
+ public:
+  DECLARE_EXTENSION_FUNCTION("braveRewards.getMediaPublisherInfo", UNKNOWN)
+
+ protected:
+  ~BraveRewardsGetMediaPublisherInfoFunction() override;
+
+  ResponseAction Run() override;
+
+ private:
+  void OnGetMediaPublisherInfo(
+      const int32_t result,
+      std::unique_ptr<brave_rewards::PublisherInfo> info);
+};
+
+class BraveRewardsGetPublisherPanelInfoFunction : public ExtensionFunction {
+ public:
+  DECLARE_EXTENSION_FUNCTION("braveRewards.getPublisherPanelInfo", UNKNOWN)
+
+ protected:
+  ~BraveRewardsGetPublisherPanelInfoFunction() override;
+
+  ResponseAction Run() override;
+};
+
+class BraveRewardsSaveMediaVisitYoutubeChannelFunction
+    : public ExtensionFunction {
+ public:
+  DECLARE_EXTENSION_FUNCTION("braveRewards.saveMediaVisitYoutubeChannel",
+                             UNKNOWN)
+
+ protected:
+  ~BraveRewardsSaveMediaVisitYoutubeChannelFunction() override;
+
+  ResponseAction Run() override;
+};
+
+class BraveRewardsSaveMediaVisitYoutubeUserFunction : public ExtensionFunction {
+ public:
+  DECLARE_EXTENSION_FUNCTION("braveRewards.saveMediaVisitYoutubeUser", UNKNOWN)
+
+ protected:
+  ~BraveRewardsSaveMediaVisitYoutubeUserFunction() override;
+
+  ResponseAction Run() override;
+};
+
+class BraveRewardsSaveMediaVisitYoutubeVideoFunction
+    : public ExtensionFunction {
+ public:
+  DECLARE_EXTENSION_FUNCTION("braveRewards.saveMediaVisitYoutubeVideo", UNKNOWN)
+
+ protected:
+  ~BraveRewardsSaveMediaVisitYoutubeVideoFunction() override;
+
+  ResponseAction Run() override;
+};
+
+class BraveRewardsSaveMediaVisitYoutubeCustomFunction
+    : public ExtensionFunction {
+ public:
+  DECLARE_EXTENSION_FUNCTION(
+      "braveRewards.saveMediaVisitYoutubeCustom",
+      UNKNOWN)
+
+ protected:
+  ~BraveRewardsSaveMediaVisitYoutubeCustomFunction() override;
 
   ResponseAction Run() override;
 };

@@ -65,6 +65,13 @@ declare namespace chrome.settingsPrivate {
 declare namespace chrome.braveRewards {
   const createWallet: () => {}
   const getRewardsParameters: (callback: (properties: RewardsExtension.RewardsParameters) => void) => {}
+  const updateMediaDuration: (windowId: number, url: string, mediaType: string, publisherKey: string, mediaId: string, mediaKey: string, favIconUrl: string, title: string, duration: integer) => {}
+  const getMediaPublisherInfo: (mediaKey: string, callback: (properties: RewardsExtension.PublisherInfo) => void) => {}
+  const getPublisherPanelInfo: (windowId: number, url: string, channelId: string, publisherKey: string, favIconUrl: string, title: string) => {}
+  const saveMediaVisitYoutubeChannel: (windowId: number, url: string, channelId: string, publisherKey: string, favIconUrl: string, title: string) => {}
+  const saveMediaVisitYoutubeUser: (windowId: number, url: string, channelId: string, publisherKey: string, mediaKey: string, title: string) => {}
+  const saveMediaVisitYoutubeVideo: (windowId: number, url: string, channelId: string, publisherKey: string, mediaKey: string, favIconUrl: string, title: string) => {}
+  const saveMediaVisitYoutubeCustom: (windowId: number, url: string, channelId: string, publisherKey: string, favIconUrl: string, title: string) => {}
   const tipSite: (tabId: number, publisherKey: string, monthly: boolean) => {}
   const tipTwitterUser: (tabId: number, mediaMetaData: RewardsTip.MediaMetaData) => {}
   const tipRedditUser: (tabId: number, mediaMetaData: RewardsTip.MediaMetaData) => {}

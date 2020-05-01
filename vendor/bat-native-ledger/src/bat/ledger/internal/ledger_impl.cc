@@ -1030,6 +1030,110 @@ void LedgerImpl::SaveMediaInfo(const std::string& type,
   bat_media_->SaveMediaInfo(type, data, callback);
 }
 
+void LedgerImpl::UpdateMediaDuration(
+    const uint64_t window_id,
+    const std::string& url,
+    const std::string& media_type,
+    const std::string& publisher_key,
+    const std::string& media_id,
+    const std::string& media_key,
+    const std::string& favicon_url,
+    const std::string& title,
+    uint64_t duration) {
+  bat_publisher_->UpdateMediaDuration(
+      window_id,
+      url,
+      media_type,
+      publisher_key,
+      media_id,
+      media_key,
+      favicon_url,
+      title,
+      duration);
+}
+
+void LedgerImpl::GetPublisherPanelInfo(
+    const uint64_t window_id,
+    const std::string& url,
+    const std::string& channel_id,
+    const std::string& publisher_key,
+    const std::string& favicon_url,
+    const std::string& title) {
+  bat_publisher_->GetPublisherPanelInfo(
+      window_id,
+      url,
+      channel_id,
+      publisher_key,
+      favicon_url,
+      title);
+}
+
+void LedgerImpl::SaveMediaVisitYoutubeChannel(
+    const uint64_t window_id,
+    const std::string& url,
+    const std::string& channel_id,
+    const std::string& publisher_key,
+    const std::string& favicon_url,
+    const std::string& title) {
+  bat_publisher_->SaveMediaVisitYoutubeChannel(
+      window_id,
+      url,
+      channel_id,
+      publisher_key,
+      favicon_url,
+      title);
+}
+
+void LedgerImpl::SaveMediaVisitYoutubeUser(
+    const uint64_t window_id,
+    const std::string& url,
+    const std::string& channel_id,
+    const std::string& publisher_key,
+    const std::string& media_key,
+    const std::string& title) {
+  bat_publisher_->SaveMediaVisitYoutubeUser(
+      window_id,
+      url,
+      channel_id,
+      publisher_key,
+      media_key,
+      title);
+}
+
+void LedgerImpl::SaveMediaVisitYoutubeVideo(
+    const uint64_t window_id,
+    const std::string& url,
+    const std::string& channel_id,
+    const std::string& publisher_key,
+    const std::string& media_key,
+    const std::string& favicon_url,
+    const std::string& title) {
+  bat_publisher_->SaveMediaVisitYoutubeVideo(
+      window_id,
+      url,
+      channel_id,
+      publisher_key,
+      media_key,
+      favicon_url,
+      title);
+}
+
+void LedgerImpl::SaveMediaVisitYoutubeCustom(
+    const uint64_t window_id,
+    const std::string& url,
+    const std::string& channel_id,
+    const std::string& publisher_key,
+    const std::string& favicon_url,
+    const std::string& title) {
+  bat_publisher_->SaveMediaVisitYoutubeCustom(
+      window_id,
+      url,
+      channel_id,
+      publisher_key,
+      favicon_url,
+      title);
+}
+
 void LedgerImpl::SetInlineTippingPlatformEnabled(
     const ledger::InlineTipsPlatforms platform,
     bool enabled) {

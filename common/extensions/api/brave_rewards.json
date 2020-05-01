@@ -355,6 +355,275 @@
         "parameters": []
       },
       {
+        "name": "updateMediaDuration",
+        "type": "function",
+        "description": "Update the media duration for a given resource",
+        "parameters": [
+          {
+            "name": "windowId",
+            "type": "number"
+          },
+          {
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "name": "mediaType",
+            "type": "string"
+          },
+          {
+            "name": "publisherKey",
+            "type": "string"
+          },
+          {
+            "name": "mediaId",
+            "type": "string"
+          },
+          {
+            "name": "mediaKey",
+            "type": "string"
+          },
+          {
+            "name": "favIconUrl",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "duration",
+            "type": "integer"
+          }
+        ]
+      },
+      {
+        "name": "getMediaPublisherInfo",
+        "type": "function",
+        "description": "Get the details for a particular media publisher",
+        "parameters": [
+          {
+            "name": "mediaKey",
+            "type": "string"
+          },
+          {
+            "type": "function",
+            "name": "callback",
+            "parameters": [
+              {
+                "name": "result",
+                "type": "integer"
+              },
+              {
+                "name": "properties",
+                "type": "object",
+                "properties": {
+                  "publisherKey": {
+                    "optional": true,
+                    "type": "string"
+                  },
+                  "percentage": {
+                    "optional": true,
+                    "type": "number"
+                  },
+                  "status": {
+                    "optional": true,
+                    "type": "number"
+                  },
+                  "excluded": {
+                    "optional": true,
+                    "type": "number"
+                  },
+                  "url": {
+                    "optional": true,
+                    "type": "string"
+                  },
+                  "name": {
+                    "optional": true,
+                    "type": "string"
+                  },
+                  "provider": {
+                    "optional": true,
+                    "type": "string"
+                  },
+                  "favIcon": {
+                    "optional": true,
+                    "type": "string"
+                  },
+                  "id": {
+                    "optional": true,
+                    "type": "string"
+                  },
+                  "weight": {
+                    "optional": true,
+                    "type": "number"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "getPublisherPanelInfo",
+        "type": "function",
+        "description": "Get the panel info for a particular publisher",
+        "parameters": [
+          {
+            "name": "windowId",
+            "type": "number"
+          },
+          {
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "name": "channelId",
+            "type": "string"
+          },
+          {
+            "name": "publisherKey",
+            "type": "string"
+          },
+          {
+            "name": "favIconUrl",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "saveMediaVisitYoutubeChannel",
+        "type": "function",
+        "description": "Save the details when visiting a YouTube channel",
+        "parameters": [
+          {
+            "name": "windowId",
+            "type": "number"
+          },
+          {
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "name": "channelId",
+            "type": "string"
+          },
+          {
+            "name": "publisherKey",
+            "type": "string"
+          },
+          {
+            "name": "favIconUrl",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "saveMediaVisitYoutubeUser",
+        "type": "function",
+        "description": "Save the details when visiting a YouTube user",
+        "parameters": [
+          {
+            "name": "windowId",
+            "type": "number"
+          },
+          {
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "name": "channelId",
+            "type": "string"
+          },
+          {
+            "name": "publisherKey",
+            "type": "string"
+          },
+          {
+            "name": "mediaKey",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "saveMediaVisitYoutubeVideo",
+        "type": "function",
+        "description": "Save the details when visiting a YouTube video",
+        "parameters": [
+          {
+            "name": "windowId",
+            "type": "number"
+          },
+          {
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "name": "channelId",
+            "type": "string"
+          },
+          {
+            "name": "publisherKey",
+            "type": "string"
+          },
+          {
+            "name": "mediaKey",
+            "type": "string"
+          },
+          {
+            "name": "favIconUrl",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "saveMediaVisitYoutubeCustom",
+        "type": "function",
+        "description": "Save the details when visiting a YouTube custom path",
+        "parameters": [
+          {
+            "name": "windowId",
+            "type": "number"
+          },
+          {
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "name": "channelId",
+            "type": "string"
+          },
+          {
+            "name": "publisherKey",
+            "type": "string"
+          },
+          {
+            "name": "favIconUrl",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          }
+        ]
+      },
+      {
         "name": "tipSite",
         "type": "function",
         "description": "Allow the user to perform a tip to a tab's site",

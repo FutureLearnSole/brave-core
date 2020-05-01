@@ -243,6 +243,62 @@ class RewardsServiceImpl : public RewardsService,
       const std::map<std::string, std::string>& args,
       SaveMediaInfoCallback callback) override;
 
+  void UpdateMediaDuration(
+      const uint64_t window_id,
+      const std::string& url,
+      const std::string& media_type,
+      const std::string& publisher_key,
+      const std::string& media_id,
+      const std::string& media_key,
+      const std::string& favicon_url,
+      const std::string& title,
+      uint64_t duration) override;
+
+  void GetMediaPublisherInfo(
+      const std::string& media_key,
+      GetMediaPublisherInfoCallback callback) override;
+
+  void GetPublisherPanelInfo(
+      const uint64_t window_id,
+      const std::string& url,
+      const std::string& channel_id,
+      const std::string& publisher_key,
+      const std::string& favicon_url,
+      const std::string& title) override;
+
+  void SaveMediaVisitYoutubeChannel(
+      const uint64_t window_id,
+      const std::string& url,
+      const std::string& channel_id,
+      const std::string& publisher_key,
+      const std::string& favicon_url,
+      const std::string& title) override;
+
+  void SaveMediaVisitYoutubeUser(
+      const uint64_t window_id,
+      const std::string& url,
+      const std::string& channel_id,
+      const std::string& publisher_key,
+      const std::string& media_key,
+      const std::string& title) override;
+
+  void SaveMediaVisitYoutubeVideo(
+      const uint64_t window_id,
+      const std::string& url,
+      const std::string& channel_id,
+      const std::string& publisher_key,
+      const std::string& media_key,
+      const std::string& favicon_url,
+      const std::string& title) override;
+
+  void SaveMediaVisitYoutubeCustom(
+      const uint64_t window_id,
+      const std::string& url,
+      const std::string& channel_id,
+      const std::string& publisher_key,
+      const std::string& favicon_url,
+      const std::string& title) override;
+
   void SetInlineTippingPlatformEnabled(
       const std::string& key,
       bool enabled) override;
@@ -533,6 +589,10 @@ class RewardsServiceImpl : public RewardsService,
   void OnSetOnDemandFaviconComplete(const std::string& favicon_url,
                                     ledger::FetchIconCallback callback,
                                     bool success);
+  void OnMediaPublisherInfo(
+      GetMediaPublisherInfoCallback callback,
+      const ledger::Result result,
+      ledger::PublisherInfoPtr info);
 
   bool MaybeTailDiagnosticLog(
       const int num_lines);
