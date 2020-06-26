@@ -5,6 +5,7 @@
 
 #include "bat/confirmations/internal/privacy_utils.h"
 
+#include "base/check_op.h"
 #include "base/logging.h"
 
 namespace confirmations {
