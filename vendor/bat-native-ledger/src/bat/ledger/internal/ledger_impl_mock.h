@@ -163,8 +163,6 @@ class MockLedgerImpl : public LedgerImpl {
       const ledger::Result,
       ledger::ContributionInfoPtr contribution));
 
-  MOCK_METHOD1(URIEncode, std::string(const std::string&));
-
   MOCK_METHOD5(SaveVisit,
       void(const std::string&,
           const ledger::VisitData&,

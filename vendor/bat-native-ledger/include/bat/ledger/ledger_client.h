@@ -95,8 +95,6 @@ class LEDGER_EXPORT LedgerClient {
   virtual void SetTimer(uint64_t time_offset, uint32_t* timer_id) = 0;
   virtual void KillTimer(const uint32_t timer_id) = 0;
 
-  virtual std::string URIEncode(const std::string& value) = 0;
-
   virtual void LoadURL(
       const std::string& url,
       const std::vector<std::string>& headers,

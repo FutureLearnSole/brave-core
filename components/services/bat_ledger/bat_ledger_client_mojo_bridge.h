@@ -59,8 +59,6 @@ class BatLedgerClientMojoBridge :
       const int verbose_level,
       const std::string& message) override;
 
-  std::string URIEncode(const std::string& value) override;
-
   void PublisherListNormalized(ledger::PublisherInfoList list) override;
 
   void SaveState(const std::string& name,

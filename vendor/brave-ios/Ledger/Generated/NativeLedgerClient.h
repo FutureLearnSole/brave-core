@@ -31,7 +31,6 @@ private:
   void SaveState(const std::string & name, const std::string & value, ledger::ResultCallback callback) override;
   void SetConfirmationsIsReady(const bool is_ready) override;
   void SetTimer(uint64_t time_offset, uint32_t * timer_id) override;
-  std::string URIEncode(const std::string & value) override;
   void OnContributeUnverifiedPublishers(ledger::Result result, const std::string& publisher_key, const std::string& publisher_name) override;
   void SetBooleanState(const std::string& name, bool value) override;
   bool GetBooleanState(const std::string& name) const override;

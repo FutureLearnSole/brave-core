@@ -54,9 +54,6 @@ class MockLedgerClient : public LedgerClient {
   MOCK_METHOD1(KillTimer, void(
       const uint32_t timer_id));
 
-  MOCK_METHOD1(URIEncode, std::string(
-      const std::string& value));
-
   MOCK_METHOD6(LoadURL, void(
       const std::string& url,
       const std::vector<std::string>& headers,

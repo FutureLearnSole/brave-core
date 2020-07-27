@@ -229,8 +229,6 @@ class LedgerImpl : public ledger::Ledger {
       const ledger::Result result,
       ledger::ContributionInfoPtr contribution);
 
-  std::string URIEncode(const std::string& value) override;
-
   void SaveVisit(
       const std::string& publisher_id,
       const ledger::VisitData& visit_data,

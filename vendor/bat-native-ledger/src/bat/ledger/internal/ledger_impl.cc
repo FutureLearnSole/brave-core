@@ -481,10 +481,6 @@ void LedgerImpl::LoadURL(
       callback);
 }
 
-std::string LedgerImpl::URIEncode(const std::string& value) {
-  return ledger_client_->URIEncode(value);
-}
-
 void LedgerImpl::SavePublisherInfo(
     ledger::PublisherInfoPtr info,
     ledger::ResultCallback callback) {
