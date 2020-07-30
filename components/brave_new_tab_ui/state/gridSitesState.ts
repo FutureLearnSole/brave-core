@@ -50,8 +50,7 @@ export function gridSitesReducerSetDefaultSuperReferralTopSites (
 
 export function gridSitesReducerSetFirstRenderData (
   state: NewTab.GridSitesState,
-  topSites: chrome.topSites.MostVisitedURL[],
-  defaultSuperReferralTopSites: NewTab.DefaultSuperReferralTopSite[]
+  topSites: chrome.topSites.MostVisitedURL[]
 ): NewTab.GridSitesState {
   const topSitesWhitelisted = getTopSitesWhitelist(topSites)
   // |state.gridSites| has lastly used sites data for NTP.
@@ -60,8 +59,7 @@ export function gridSitesReducerSetFirstRenderData (
   const updatedGridSites: NewTab.Site[] = state.gridSites.filter((gridSite: NewTab.Site) => {
     // Don't delete top sites came from SR's default top sites even if they
     // are not in history.
-    if (defaultSuperReferralTopSites &&
-        defaultSuperReferralTopSites.some(site => site.url === gridSite.url)) {
+    if (gridSite.defaultSRTopSite) {
       return true
     }
     return topSitesWhitelisted.some(site => site.url === gridSite.url)

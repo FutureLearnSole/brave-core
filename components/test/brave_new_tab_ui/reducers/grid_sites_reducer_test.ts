@@ -60,7 +60,7 @@ describe('gridSitesReducer', () => {
 
       expect(gridSitesReducerSetFirstRenderDataStub).toBeCalledTimes(1)
       expect(gridSitesReducerSetFirstRenderDataStub)
-        .toBeCalledWith(storage.initialGridSitesState, [], undefined)
+        .toBeCalledWith(storage.initialGridSitesState, [])
     })
     it('populate state.gridSites list with Chromium topSites data', () => {
       const assertion = gridSitesReducer(storage.initialGridSitesState, {
@@ -81,7 +81,8 @@ describe('gridSitesReducer', () => {
             id: 'topsite-0',
             favicon: '',
             letter: 'b',
-            pinnedIndex: 0
+            pinnedIndex: 0,
+            defaultSRTopSite: false
           },
           {
             url: 'www.brave.com',
@@ -89,7 +90,8 @@ describe('gridSitesReducer', () => {
             id: 'topsite-1',
             favicon: '',
             letter: 'c',
-            pinnedIndex: undefined
+            pinnedIndex: undefined,
+            defaultSRTopSite: false
           },
           {
             url: 'www.google.com',
@@ -97,7 +99,8 @@ describe('gridSitesReducer', () => {
             id: 'topsite-2',
             favicon: '',
             letter: 'c',
-            pinnedIndex: undefined
+            pinnedIndex: undefined,
+            defaultSRTopSite: false
           }
         ]
       }
@@ -133,7 +136,8 @@ describe('gridSitesReducer', () => {
             id: 'topsite-0',
             favicon: '',
             letter: 'b',
-            pinnedIndex: 0
+            pinnedIndex: 0,
+            defaultSRTopSite: true
           },
           {
             url: 'www.brave.com',
@@ -141,7 +145,8 @@ describe('gridSitesReducer', () => {
             id: 'topsite-1',
             favicon: '',
             letter: 'c',
-            pinnedIndex: undefined
+            pinnedIndex: undefined,
+            defaultSRTopSite: false
           },
           {
             url: 'www.google.com',
@@ -149,7 +154,8 @@ describe('gridSitesReducer', () => {
             id: 'topsite-2',
             favicon: '',
             letter: 'c',
-            pinnedIndex: undefined
+            pinnedIndex: undefined,
+            defaultSRTopSite: false
           }
         ]
       }
@@ -164,17 +170,9 @@ describe('gridSitesReducer', () => {
         }
       ]
 
-      const defaultSuperReferralTopSites = [
-        {
-          pinnedIndex: 0,
-          url: 'www.basicattentiontoken.org',
-          title: 'BAT',
-          favicon: 'favicon.png'
-        }
-      ]
       const assertion = gridSitesReducer(state, {
         type: types.GRID_SITES_SET_FIRST_RENDER_DATA,
-        payload: { topSites, defaultSuperReferralTopSites }
+        payload: { topSites }
       })
 
       // topSites doesn't have bat site but it's in SR's default top sites.

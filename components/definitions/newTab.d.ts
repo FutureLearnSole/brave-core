@@ -38,6 +38,7 @@ declare namespace NewTab {
     favicon: string
     letter: string
     pinnedIndex: number | undefined
+    defaultSRTopSite: boolean
   }
 
   // This is preserved for migration reasons.
