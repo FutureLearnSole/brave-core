@@ -543,6 +543,10 @@ void AdsServiceImpl::OnInitialize(
 }
 
 void AdsServiceImpl::ShutdownBatAds() {
+  if (!connected()) {
+    return;
+  }
+
   VLOG(1) << "Shutting down ads";
 
   bat_ads_->Shutdown(base::BindOnce(&AdsServiceImpl::OnShutdownBatAds,
@@ -624,10 +628,6 @@ void AdsServiceImpl::Start() {
 }
 
 void AdsServiceImpl::Stop() {
-  if (!connected()) {
-    return;
-  }
-
   ShutdownBatAds();
 }
 
@@ -819,10 +819,14 @@ void AdsServiceImpl::OnViewAdNotification(
   ads::AdNotificationInfo notification;
   notification.FromJson(json);
 
+  OpenNewTabWithUrl(notification.target_url);
+
+  if (!connected()) {
+    return;
+  }
+
   bat_ads_->OnAdNotificationEvent(notification.uuid,
       ads::AdNotificationEventType::kClicked);
-
-  OpenNewTabWithUrl(notification.target_url);
 }
 
 void AdsServiceImpl::RetryViewingAdNotification(
@@ -847,6 +851,10 @@ void AdsServiceImpl::ClearAdsServiceForNotificationHandler() {
 
 void AdsServiceImpl::OpenNewTabWithUrl(
     const std::string& url) {
+  if (g_brave_browser_process->IsShuttingDown()) {
+    return;
+  }
+
   GURL gurl(url);
   if (!gurl.is_valid()) {
     VLOG(0) << "Failed to open new tab due to invalid URL: " << url;
