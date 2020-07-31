@@ -406,6 +406,10 @@ void AdsServiceImpl::ToggleAdThumbUp(
     const std::string& creative_set_id,
     const int action,
     OnToggleAdThumbUpCallback callback) {
+  if (!connected()) {
+    return;
+  }
+
   bat_ads_->ToggleAdThumbUp(creative_instance_id, creative_set_id, action,
       base::BindOnce(&AdsServiceImpl::OnToggleAdThumbUp, AsWeakPtr(),
           std::move(callback)));
@@ -416,6 +420,10 @@ void AdsServiceImpl::ToggleAdThumbDown(
     const std::string& creative_set_id,
     const int action,
     OnToggleAdThumbDownCallback callback) {
+  if (!connected()) {
+    return;
+  }
+
   bat_ads_->ToggleAdThumbDown(creative_instance_id, creative_set_id, action,
       base::BindOnce(&AdsServiceImpl::OnToggleAdThumbDown, AsWeakPtr(),
           std::move(callback)));
@@ -425,6 +433,10 @@ void AdsServiceImpl::ToggleAdOptInAction(
     const std::string& category,
     const int action,
     OnToggleAdOptInActionCallback callback) {
+  if (!connected()) {
+    return;
+  }
+
   bat_ads_->ToggleAdOptInAction(category, action,
       base::BindOnce(&AdsServiceImpl::OnToggleAdOptInAction, AsWeakPtr(),
           std::move(callback)));
@@ -434,6 +446,10 @@ void AdsServiceImpl::ToggleAdOptOutAction(
     const std::string& category,
     const int action,
     OnToggleAdOptOutActionCallback callback) {
+  if (!connected()) {
+    return;
+  }
+
   bat_ads_->ToggleAdOptOutAction(category, action,
       base::BindOnce(&AdsServiceImpl::OnToggleAdOptOutAction, AsWeakPtr(),
           std::move(callback)));
@@ -444,6 +460,10 @@ void AdsServiceImpl::ToggleSaveAd(
     const std::string& creative_set_id,
     const bool saved,
     OnToggleSaveAdCallback callback) {
+  if (!connected()) {
+    return;
+  }
+
   bat_ads_->ToggleSaveAd(creative_instance_id, creative_set_id, saved,
       base::BindOnce(&AdsServiceImpl::OnToggleSaveAd, AsWeakPtr(),
           std::move(callback)));
@@ -454,6 +474,10 @@ void AdsServiceImpl::ToggleFlagAd(
     const std::string& creative_set_id,
     const bool flagged,
     OnToggleFlagAdCallback callback) {
+  if (!connected()) {
+    return;
+  }
+
   bat_ads_->ToggleFlagAd(creative_instance_id, creative_set_id, flagged,
       base::BindOnce(&AdsServiceImpl::OnToggleFlagAd, AsWeakPtr(),
           std::move(callback)));
