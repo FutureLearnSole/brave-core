@@ -39,6 +39,7 @@
 #include "components/translate/core/browser/translate_prefs.h"
 #include "content/public/common/content_features.h"
 #include "content/public/common/content_switches.h"
+#include "google_apis/gaia/gaia_switches.h"
 #include "services/device/public/cpp/device_features.h"
 #include "services/network/public/cpp/features.h"
 #include "third_party/blink/public/common/features.h"
@@ -81,6 +82,11 @@ base::LazyInstance<BraveContentBrowserClient>::DestructorAtExit
 const char kBraveOriginTrialsPublicKey[] =
     "bYUKPJoPnCxeNvu72j4EmPuK7tr1PAC7SHh8ld9Mw3E=,"
     "fMS4mpO6buLQ/QMd+zJmxzty/VQ6B1EUZqoCU04zoRU=";
+
+// Setting the gaia host using the command line switch instead of
+// updating the kDefaultGaiaURL in google_apis/gaia/gaia_urls.cc
+// to avoid enabling google LSO
+const char kGaiaHost[] = "https://accounts.google.com";
 
 BraveMainDelegate::BraveMainDelegate()
     : ChromeMainDelegate() {}
@@ -177,6 +183,12 @@ bool BraveMainDelegate::BasicStartupComplete(int* exit_code) {
   // Brave's sync protocol does not use the sync service url
   command_line.AppendSwitchASCII(switches::kSyncServiceURL,
                                  kBraveSyncServiceURL);
+
+  // GaiaURL is not gated behind the preference because
+  // GaiaURLs are initialized before profile init, this is okay
+  // because kSigninAllowedOnNextStartup will still be disabled
+  command_line.AppendSwitchASCII(switches::kGaiaUrl,
+                                 kGaiaHost);
 
   // Enabled features.
   std::unordered_set<const char*> enabled_features = {

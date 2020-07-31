@@ -12,7 +12,14 @@
     <settings-toggle-button id="googleLoginControlType"
         class="cr-row"
         pref="{{prefs.brave.google_login_default}}"
-        label="$i18n{googleLoginControlLabel}">
+        label="$i18n{googleLoginControlLabel}"
+        on-settings-boolean-control-change="setGoogleLoginEnabled_">
+        <template is="dom-if" if="[[shouldShowRestart_(
+          prefs.brave.google_login_default.value)]]">
+        <cr-button on-click="restartBrowser_" slot="more-actions">
+          $i18n{restart}
+        </cr-button>
+        </template>
     </settings-toggle-button>
     <settings-toggle-button id="fbEmbedControlType"
         class="cr-row"

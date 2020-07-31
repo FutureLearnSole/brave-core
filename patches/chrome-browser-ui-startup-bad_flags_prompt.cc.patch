@@ -1,0 +1,14 @@
+diff --git a/chrome/browser/ui/startup/bad_flags_prompt.cc b/chrome/browser/ui/startup/bad_flags_prompt.cc
+index c8522bc517cb1e7c0c588f786474676295ec1f18..e1f3437ac6205b14d68219cc823dd114127688b3 100644
+--- a/chrome/browser/ui/startup/bad_flags_prompt.cc
++++ b/chrome/browser/ui/startup/bad_flags_prompt.cc
+@@ -80,7 +80,9 @@ static const char* kBadFlags[] = {
+     switches::kIgnoreCertificateErrors,
+ 
+     // These flags change the URLs that handle PII.
++#if !defined(BRAVE_CHROMIUM_BUILD)
+     switches::kGaiaUrl,
++#endif
+     translate::switches::kTranslateScriptURL,
+ 
+ #if BUILDFLAG(ENABLE_EXTENSIONS)
