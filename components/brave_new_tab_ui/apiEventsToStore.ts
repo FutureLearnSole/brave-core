@@ -35,7 +35,6 @@ export function wireApiEventsToStore () {
   .then((initialData) => {
     if (initialData.preferences.showRewards) {
       rewardsInitData()
-      setRewardsFetchInterval()
     }
     binanceInitData()
     getActions().setInitialData(initialData)
@@ -55,6 +54,12 @@ export function rewardsInitData () {
   getRewardsPreInitialData()
   .then((preInitialRewardsData) => {
     getActions().setPreInitialRewardsData(preInitialRewardsData)
+    if (!preInitialRewardsData.enabledMain) {
+      return
+    }
+
+    setRewardsFetchInterval()
+
     chrome.braveRewards.getWalletExists((exists: boolean) => {
       if (exists) {
         fetchCreatedWalletData()
@@ -83,32 +88,55 @@ function binanceInitData () {
 
 function setRewardsFetchInterval () {
   window.setInterval(() => {
-    chrome.braveRewards.getWalletExists((exists: boolean) => {
-      if (exists) {
-        fetchCreatedWalletData()
+    chrome.braveRewards.getRewardsMainEnabled((enabledMain: boolean) => {
+      if (!enabledMain) {
+        return
       }
+      chrome.braveRewards.getWalletExists((exists: boolean) => {
+        if (exists) {
+          fetchCreatedWalletData()
+        }
+      })
     })
   }, 30000)
 }
 
 function fetchCreatedWalletData () {
-  getRewardsInitialData()
-  .then((initialRewardsData) => {
-    getActions().setInitialRewardsData(initialRewardsData)
-  })
-  .catch(e => {
-    console.error('Error fetching initial rewards data: ', e)
+  chrome.braveRewards.isInitialized((initialized: boolean) => {
+    if (!initialized) {
+      return
+    }
+
+    getRewardsInitialData()
+    .then((initialRewardsData) => {
+      getActions().setInitialRewardsData(initialRewardsData)
+    })
+    .catch(e => {
+      console.error('Error fetching initial rewards data: ', e)
+    })
   })
 }
 
-chrome.braveRewards.onWalletInitialized.addListener((result: any | NewTab.RewardsResult) => {
+chrome.braveRewards.walletCreated.addListener(() => {
+  getActions().onWalletInitialized(12)
+})
+
+chrome.braveRewards.walletCreationFailed.addListener((result: any | NewTab.RewardsResult) => {
+  getActions().onWalletInitialized(result)
+})
+
+chrome.braveRewards.initialized.addListener((result: any | NewTab.RewardsResult) => {
   getActions().onWalletInitialized(result)
 })
 
 chrome.braveRewards.onEnabledMain.addListener((enabledMain: boolean) => {
-  chrome.braveRewards.getAdsEnabled((enabledAds: boolean) => {
-    getActions().onEnabledMain(enabledMain, enabledAds)
-  })
+  if (enabledMain) {
+    chrome.braveRewards.getAdsEnabled((enabledAds: boolean) => {
+      getActions().onEnabledMain(enabledMain, enabledAds)
+    })
+  } else {
+    getActions().onEnabledMain(false, false)
+  }
 })
 
 chrome.braveRewards.onAdsEnabled.addListener((enabled: boolean) => {
@@ -121,4 +149,12 @@ chrome.braveRewards.onPromotions.addListener((result: number, promotions: NewTab
 
 chrome.braveRewards.onPromotionFinish.addListener((result: number, promotion: NewTab.Promotion) => {
   getActions().onPromotionFinish(result, promotion)
+})
+
+chrome.braveRewards.initialized.addListener((result: number) => {
+  rewardsInitData()
+})
+
+chrome.braveRewards.onCompleteReset.addListener((properties: { success: boolean }) => {
+  getActions().onCompleteReset(properties.success)
 })

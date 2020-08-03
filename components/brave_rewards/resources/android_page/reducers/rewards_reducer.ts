@@ -15,7 +15,7 @@ const rewardsReducer: Reducer<Rewards.State | undefined> = (state: Rewards.State
       break
     }
     case types.TOGGLE_ENABLE_MAIN: {
-      if (state.initializing) {
+      if (state.initializing && state.enabledMain) {
         break
       }
 

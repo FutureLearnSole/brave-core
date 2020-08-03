@@ -34,17 +34,12 @@ const rewardsReducer: Reducer<NewTab.State | undefined> = (state: NewTab.State, 
           state.rewardsState.walletCorrupted = true
           break
         case NewTab.RewardsResult.WALLET_CREATED:
+          state.rewardsState.enabledMain = true
           state.rewardsState.walletCreated = true
           state.rewardsState.walletCreateFailed = false
           state.rewardsState.walletCreating = false
           state.rewardsState.walletCorrupted = false
           chrome.braveRewards.saveAdsSetting('adsEnabled', 'true')
-          break
-        case NewTab.RewardsResult.LEDGER_OK:
-          state.rewardsState.walletCreateFailed = true
-          state.rewardsState.walletCreating = false
-          state.rewardsState.walletCreated = false
-          state.rewardsState.walletCorrupted = false
           break
       }
       break
@@ -192,6 +187,21 @@ const rewardsReducer: Reducer<NewTab.State | undefined> = (state: NewTab.State, 
         rewardsState: {
           ...state.rewardsState,
           onlyAnonWallet: payload.onlyAnonWallet
+        }
+      }
+      break
+    case types.ON_COMPLETE_RESET:
+      state = { ...state }
+      state = {
+        ...state,
+        rewardsState: {
+          ...state.rewardsState,
+          enabledMain: false,
+          enabledAds: false,
+          walletCreated: false,
+          walletCreating: false,
+          walletCreateFailed: false,
+          walletCorrupted: false
         }
       }
       break

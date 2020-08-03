@@ -35,7 +35,8 @@ export const defaultState: RewardsExtension.State = {
   balance: {
     total: 0,
     wallets: {}
-  }
+  },
+  initializing: true
 }
 
 const cleanData = (state: RewardsExtension.State) => {
@@ -60,6 +61,7 @@ export const load = (): RewardsExtension.State => {
   if (data) {
     try {
       state = JSON.parse(data)
+      state.initializing = true
     } catch (e) {
       console.error('Could not parse local storage data: ', e)
     }
