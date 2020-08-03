@@ -119,6 +119,7 @@ class RewardsContributionBrowserTest : public InProcessBrowserTest {
 };
 
 IN_PROC_BROWSER_TEST_F(RewardsContributionBrowserTest, AutoContribution) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
@@ -143,6 +144,7 @@ IN_PROC_BROWSER_TEST_F(RewardsContributionBrowserTest, AutoContribution) {
 IN_PROC_BROWSER_TEST_F(
     RewardsContributionBrowserTest,
     AutoContributionMultiplePublishers) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
@@ -210,6 +212,7 @@ IN_PROC_BROWSER_TEST_F(
     AutoContributionMultiplePublishersUphold) {
   response_->SetVerifiedWallet(true);
   contribution_->SetUpUpholdWallet(50.0);
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   ledger::SKUOrderItemList items;
@@ -257,6 +260,7 @@ IN_PROC_BROWSER_TEST_F(
 IN_PROC_BROWSER_TEST_F(
     RewardsContributionBrowserTest,
     AutoContributeWhenACOff) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
@@ -281,6 +285,7 @@ IN_PROC_BROWSER_TEST_F(
 IN_PROC_BROWSER_TEST_F(
     RewardsContributionBrowserTest,
     TipVerifiedPublisher) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
@@ -293,6 +298,7 @@ IN_PROC_BROWSER_TEST_F(
 IN_PROC_BROWSER_TEST_F(
     RewardsContributionBrowserTest,
     TipUnverifiedPublisher) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
@@ -304,6 +310,7 @@ IN_PROC_BROWSER_TEST_F(
 IN_PROC_BROWSER_TEST_F(
     RewardsContributionBrowserTest,
     RecurringTipForVerifiedPublisher) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
@@ -316,6 +323,7 @@ IN_PROC_BROWSER_TEST_F(
 IN_PROC_BROWSER_TEST_F(
     RewardsContributionBrowserTest,
     RecurringTipForUnverifiedPublisher) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
@@ -330,6 +338,7 @@ IN_PROC_BROWSER_TEST_F(
     PendingContributionTip) {
   const std::string publisher = "example.com";
 
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
@@ -355,6 +364,7 @@ IN_PROC_BROWSER_TEST_F(
     ProcessPendingContributions) {
   response_->SetAlternativePublisherList(true);
 
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   contents()->GetController().Reload(content::ReloadType::NORMAL, true);
@@ -450,6 +460,7 @@ IN_PROC_BROWSER_TEST_F(
     TipWithVerifiedWallet) {
   response_->SetVerifiedWallet(true);
   contribution_->SetUpUpholdWallet(50.0);
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   const double amount = 5.0;
@@ -467,6 +478,7 @@ IN_PROC_BROWSER_TEST_F(
   response_->SetVerifiedWallet(true);
   contribution_->SetUpUpholdWallet(50.0);
 
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   double total_amount = 0.0;
@@ -502,6 +514,7 @@ IN_PROC_BROWSER_TEST_F(
 IN_PROC_BROWSER_TEST_F(
     RewardsContributionBrowserTest,
     TipConnectedPublisherAnon) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
@@ -520,6 +533,7 @@ IN_PROC_BROWSER_TEST_F(
   response_->SetVerifiedWallet(true);
   contribution_->SetUpUpholdWallet(50.0);
 
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
@@ -538,6 +552,7 @@ IN_PROC_BROWSER_TEST_F(
   response_->SetVerifiedWallet(true);
   contribution_->SetUpUpholdWallet(50.0, ledger::WalletStatus::CONNECTED);
 
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contents()->GetController().Reload(content::ReloadType::NORMAL, true);
   EXPECT_TRUE(WaitForLoadStop(contents()));
@@ -564,6 +579,7 @@ IN_PROC_BROWSER_TEST_F(
   response_->SetVerifiedWallet(true);
   contribution_->SetUpUpholdWallet(50.0);
 
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contents()->GetController().Reload(content::ReloadType::NORMAL, true);
   EXPECT_TRUE(WaitForLoadStop(contents()));
@@ -586,6 +602,7 @@ IN_PROC_BROWSER_TEST_F(
 
 // Ensure that we can make a one-time tip of a non-integral amount.
 IN_PROC_BROWSER_TEST_F(RewardsContributionBrowserTest, TipNonIntegralAmount) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
@@ -599,6 +616,7 @@ IN_PROC_BROWSER_TEST_F(RewardsContributionBrowserTest, TipNonIntegralAmount) {
 IN_PROC_BROWSER_TEST_F(
     RewardsContributionBrowserTest,
     RecurringTipNonIntegralAmount) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
@@ -619,6 +637,7 @@ IN_PROC_BROWSER_TEST_F(
 IN_PROC_BROWSER_TEST_F(
     RewardsContributionBrowserTest,
     RecurringAndPartialAutoContribution) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
@@ -666,6 +685,7 @@ IN_PROC_BROWSER_TEST_F(
 IN_PROC_BROWSER_TEST_F(
     RewardsContributionBrowserTest,
     MultipleRecurringOverBudgetAndPartialAutoContribution) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   contribution_->TipViaCode(
@@ -727,10 +747,12 @@ IN_PROC_BROWSER_TEST_F(
 IN_PROC_BROWSER_TEST_F(
     RewardsContributionBrowserTest,
     SplitProcessorAutoContribution) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
+  rewards_browsertest_helper::EnableRewards(browser());
+
   response_->SetVerifiedWallet(true);
   contribution_->SetUpUpholdWallet(50.0);
 
-  rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
   rewards_browsertest_helper::VisitPublisher(
@@ -796,6 +818,7 @@ IN_PROC_BROWSER_TEST_F(
 IN_PROC_BROWSER_TEST_F(
     RewardsContributionBrowserTest,
     CheckIfReconcileWasReset) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   uint64_t current_stamp = 0;
 
@@ -830,6 +853,7 @@ IN_PROC_BROWSER_TEST_F(
 IN_PROC_BROWSER_TEST_F(
     RewardsContributionBrowserTest,
     CheckIfReconcileWasResetACOff) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   uint64_t current_stamp = 0;
 
@@ -862,6 +886,7 @@ IN_PROC_BROWSER_TEST_F(
     SplitProcessOneTimeTip) {
   response_->SetVerifiedWallet(true);
   contribution_->SetUpUpholdWallet(50.0);
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
@@ -899,6 +924,7 @@ IN_PROC_BROWSER_TEST_F(
 IN_PROC_BROWSER_TEST_F(
     RewardsContributionBrowserTest,
     PanelDefaultMonthlyTipChoices) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 

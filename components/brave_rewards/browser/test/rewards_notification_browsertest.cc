@@ -324,6 +324,7 @@ IN_PROC_BROWSER_TEST_F(
 IN_PROC_BROWSER_TEST_F(
     RewardsNotificationBrowserTest,
     InsufficientNotificationForACNotEnoughFunds) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   // Visit publishers
@@ -360,6 +361,7 @@ IN_PROC_BROWSER_TEST_F(
 IN_PROC_BROWSER_TEST_F(
     RewardsNotificationBrowserTest,
     InsufficientNotificationForInsufficientAmount) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 

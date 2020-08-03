@@ -112,6 +112,7 @@ class RewardsBrowserTest : public InProcessBrowserTest {
 };
 
 IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, RenderWelcome) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   EXPECT_STREQ(
@@ -120,6 +121,7 @@ IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, RenderWelcome) {
 }
 
 IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, ToggleRewards) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   // Toggle rewards off
@@ -144,6 +146,7 @@ IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, ToggleRewards) {
 }
 
 IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, ActivateSettingsModal) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   rewards_browsertest_util::WaitForElementThenClick(
@@ -155,6 +158,7 @@ IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, ActivateSettingsModal) {
 }
 
 IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, ToggleAutoContribute) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   // once rewards has loaded, reload page to activate auto-contribute
@@ -184,12 +188,14 @@ IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, ToggleAutoContribute) {
 }
 
 IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, PrefsTestInPrivateWindow) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   EXPECT_TRUE(rewards_browsertest_util::IsRewardsEnabled(browser()));
   EXPECT_FALSE(rewards_browsertest_util::IsRewardsEnabled(browser(), true));
 }
 
 IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, SiteBannerDefaultTipChoices) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   rewards_browsertest_util::NavigateToPublisherPage(
@@ -216,6 +222,7 @@ IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, SiteBannerDefaultTipChoices) {
 IN_PROC_BROWSER_TEST_F(
     RewardsBrowserTest,
     SiteBannerDefaultPublisherAmounts) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   rewards_browsertest_util::NavigateToPublisherPage(
@@ -232,14 +239,13 @@ IN_PROC_BROWSER_TEST_F(
   ASSERT_EQ(tip_options, std::vector<double>({ 5, 10, 20 }));
 }
 
-IN_PROC_BROWSER_TEST_F(
-  RewardsBrowserTest,
-  NewTabPageWidgetEnableRewards) {
+IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, NewTabPageWidgetEnableRewards) {
   rewards_browsertest_helper::EnableRewards(browser(), true);
 }
 
 // Disabled in https://github.com/brave/brave-browser/issues/10789
 IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, DISABLED_NotVerifiedWallet) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
   contribution_->IsBalanceCorrect();
@@ -308,6 +314,7 @@ IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, ShowMonthlyIfACOff) {
 }
 
 IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, ShowACPercentInThePanel) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   rewards_browsertest_helper::VisitPublisher(
@@ -366,6 +373,7 @@ IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, ZeroBalanceWalletClaimNotCalled) {
 }
 
 IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, BackupRestoreModalHasNotice) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
@@ -390,6 +398,7 @@ IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, BackupRestoreModalHasNotice) {
 
 IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, BackupRestoreModalHasNoNotice) {
   response_->SetUserFundsBalance(true);
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   rewards_browsertest_util::WaitForElementToEqual(
@@ -413,6 +422,7 @@ IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, BackupRestoreModalHasNoNotice) {
 }
 
 IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, ResetRewards) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   rewards_browsertest_util::WaitForElementThenClick(
@@ -434,6 +444,7 @@ IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, ResetRewards) {
 }
 
 IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, ResetRewardsWithBAT) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
   contribution_->AddBalance(promotion_->ClaimPromotionViaCode());
 
@@ -456,6 +467,7 @@ IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, ResetRewardsWithBAT) {
 }
 
 IN_PROC_BROWSER_TEST_F(RewardsBrowserTest, UpholdLimitNoBAT) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   rewards_browsertest_util::WaitForElementThenClick(

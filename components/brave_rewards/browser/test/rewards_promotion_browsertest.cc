@@ -148,6 +148,7 @@ class RewardsPromotionBrowserTest : public InProcessBrowserTest {
 };
 
 IN_PROC_BROWSER_TEST_F(RewardsPromotionBrowserTest, ClaimViaSettingsPage) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   double balance = ClaimPromotion(false);
@@ -165,6 +166,7 @@ IN_PROC_BROWSER_TEST_F(
     RewardsPromotionBrowserTest,
     PromotionHasEmptyPublicKey) {
   response_->SetPromotionEmptyKey(true);
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   promotion_->WaitForPromotionInitialization();

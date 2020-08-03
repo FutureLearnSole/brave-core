@@ -130,6 +130,7 @@ IN_PROC_BROWSER_TEST_F(
 }
 
 IN_PROC_BROWSER_TEST_F(RewardsPublisherBrowserTest, VisitVerifiedPublisher) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   rewards_browsertest_helper::VisitPublisher(
@@ -139,6 +140,7 @@ IN_PROC_BROWSER_TEST_F(RewardsPublisherBrowserTest, VisitVerifiedPublisher) {
 }
 
 IN_PROC_BROWSER_TEST_F(RewardsPublisherBrowserTest, VisitUnverifiedPublisher) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   rewards_browsertest_helper::VisitPublisher(
@@ -149,6 +151,7 @@ IN_PROC_BROWSER_TEST_F(RewardsPublisherBrowserTest, VisitUnverifiedPublisher) {
 
 // Registered publishers without a wallet address are displayed as verified
 IN_PROC_BROWSER_TEST_F(RewardsPublisherBrowserTest, VisitRegisteredPublisher) {
+  base::ScopedAllowBlockingForTesting allow_blocking;
   rewards_browsertest_helper::EnableRewards(browser());
 
   rewards_browsertest_helper::VisitPublisher(
