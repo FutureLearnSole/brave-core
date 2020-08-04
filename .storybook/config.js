@@ -15,6 +15,7 @@ addDecorator(withThemesProvider(themes))
 
 addParameters({
   backgrounds: [
+    { name: 'Neutral', value: 'zzz', default: true },
     { name: 'Neutral300', value: '#DEE2E6', default: true },
     { name: 'Grey700', value: '#5E6175' },
     { name: 'White', value: '#FFF' },
