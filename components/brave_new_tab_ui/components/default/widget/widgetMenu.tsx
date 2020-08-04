@@ -24,6 +24,7 @@ interface Props {
   widgetTitle?: string
   onLearnMore?: () => void
   onMouseEnter: () => void
+  onMouseLeave: () => void
   onDisconnect?: () => void
   onRefreshData?: () => void
 }
@@ -65,6 +66,11 @@ export default class WidgetMenu extends React.PureComponent<Props, State> {
     this.setState({ showMenu: false })
   }
 
+  onMouseLeave = () => {
+    this.closeMenu()
+    this.props.onMouseLeave()
+  }
+
   unmountWidget = () => {
     this.props.hideWidget()
     this.props.unpersistWidgetHover()
@@ -101,6 +107,7 @@ export default class WidgetMenu extends React.PureComponent<Props, State> {
         {showMenu && <StyledWidgetMenu
           textDirection={textDirection}
           menuPosition={menuPosition}
+          onMouseLeave={this.onMouseLeave}
         >
           <StyledWidgetButton
             onClick={this.unmountWidget}
